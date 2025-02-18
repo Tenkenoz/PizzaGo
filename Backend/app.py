@@ -639,7 +639,10 @@ def eliminar_producto_carrito():
         return jsonify({'message': f'Error al eliminar el producto del carrito: {str(e)}'}), 500
     
 
-
+if __name__ == "__main__":
+    # Obtener el puerto del entorno o usar el predeterminado 5000
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host="0.0.0.0", port=port)
 """
 # ---------------------- Rutas para Pedidos ----------------------
 
