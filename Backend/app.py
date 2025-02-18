@@ -23,7 +23,7 @@ def home():
 @app.route('/<nombre_pagina>')
 def pagina(nombre_pagina):
     return render_template(f'{nombre_pagina}.html')
-
+CORS(app)
 # Conexión a MongoDB
 mongo_uri = "mongodb+srv://pobando:patricio7@cluster0.f3tc9.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
 try:
