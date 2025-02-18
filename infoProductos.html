@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
+
+    <link rel="icon" type="image/png" href="imgs/pizza-box.png">
+    <style>
+        /* Estilos generales */
+/* Estilos generales */
+body {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(135deg, #ffcc00, #c82333); /* Fondo degradado con colores de pizza */
+    margin: 0;
+    padding: 0;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* Menú lateral */
+.sidebar {
+    width: 250px;
+    height: 100vh;
+    background-color: #c82333; /* Rojo oscuro */
+    color: #fff;
+    position: fixed;
+    top: 0;
+    left: -250px;
+    transition: left 0.3s ease;
+    z-index: 1000;
+    padding-top: 80px;
+}
+
+.sidebar.active {
+    left: 0;
+}
+
+.sidebar-menu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar-menu li {
+    margin: 0;
+}
+
+.sidebar-menu li a {
+    display: block;
+    padding: 1rem;
+    color: #fff;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.sidebar-menu li a:hover {
+    background-color: #a71d2a; /* Rojo más oscuro al pasar el mouse */
+}
+
+.sidebar-menu li a i {
+    margin-right: 10px;
+}
+
+/* Botón para abrir el menú */
+.open-btn {
+    position: fixed;
+    top: 10px;
+    left: 0px;
+    background-color: #c82333; /* Rojo oscuro */
+    color: #fff;
+    border: none;
+    padding: 10px 15px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    z-index: 1001;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.open-btn:hover {
+    background-color: #a71d2a; /* Rojo más oscuro al pasar el mouse */
+}
+
+/* Header */
+header {
+    background: linear-gradient(90deg, #E65100, #FF6F00);
+    color: #fff;
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 24px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+header h1 i {
+    font-size: 28px;
+    color: #ffcc00; /* Amarillo */
+}
+
+/* Login Container */
+.login-container {
+    position: relative;
+}
+
+.login-button {
+    cursor: pointer;
+    padding: 10px 20px;
+    background-color: #c82333; /* Verde */
+    border-radius: 5px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.login-button:hover {
+    background-color: #c82333; /* Verde más oscuro al pasar el mouse */
+    transform: translateY(-2px);
+}
+
+/* Contenedor de productos */
+.container {
+    display: flex;
+    padding: 30px;
+    gap: 30px;
+    max-width: 1200px;
+    margin: 30px auto;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Image Section */
+.image-section {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.image-section img {
+    width: 100%;
+    max-width: 400px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.image-section img:hover {
+    transform: scale(1.05);
+}
+
+/* Details Section */
+.details-section {
+    flex: 2;
+    padding: 20px;
+}
+
+.details-section h1 {
+    margin-top: 0;
+    font-size: 36px;
+    color: #343a40;
+    font-weight: 700;
+}
+
+.store a {
+    color: #c82333; /* Verde */
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.store a:hover {
+    color: #c82333; /* Verde más oscuro al pasar el mouse */
+}
+
+.rating {
+    margin: 15px 0;
+    font-size: 20px;
+    color: #ffc107; /* Amarillo */
+}
+
+.price {
+    font-size: 32px;
+    font-weight: bold;
+    color: #343a40;
+    margin: 15px 0;
+}
+
+.discount {
+    color: #c82333; /* Verde */
+    margin-left: 10px;
+    font-size: 20px;
+}
+
+.old-price {
+    text-decoration: line-through;
+    color: #888;
+    margin-left: 10px;
+    font-size: 20px;
+}
+
+#productDescription {
+    font-size: 16px;
+    line-height: 1.8;
+    color: #555;
+    margin-bottom: 20px;
+}
+
+/* Pizza Customization Form */
+.pizza-form {
+    margin-top: 20px;
+    background-color: #f8f9fa;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.pizza-form h2 {
+    text-align: center;
+    color: #343a40;
+    font-size: 24px;
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+.pizza-form label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: 500;
+    color: #555;
+}
+
+.pizza-form select,
+.pizza-form input[type="checkbox"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 14px;
+    transition: border-color 0.3s ease;
+}
+
+.pizza-form select:focus,
+.pizza-form input[type="checkbox"]:focus {
+    border-color: #c82333; /* Verde */
+    outline: none;
+}
+
+.pizza-form button {
+    width: 100%;
+    padding: 12px;
+    background-color: #c82333; /* Verde */
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 500;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.pizza-form button:hover {
+    background-color: #c82333; /* Verde más oscuro al pasar el mouse */
+    transform: translateY(-2px);
+}
+
+/* Total Price */
+#totalPrice {
+    font-size: 24px;
+    font-weight: bold;
+    color: #c82333; /* Verde */
+    margin: 15px 0;
+}
+
+/* Footer */
+footer {
+    background-color: #333; /* Fondo oscuro */
+    color: #fff; /* Texto blanco */
+    padding: 20px;
+    text-align: center;
+    margin-top: 30px;
+}
+
+footer a {
+    color: #ffcc00; /* Amarillo */
+    text-decoration: none;
+    margin: 0 10px;
+}
+
+footer a:hover {
+    color: #e6b800; /* Amarillo más oscuro al pasar el mouse */
+}
+
+.social-icons {
+    margin-top: 10px;
+}
+
+.social-icons a {
+    color: #fff; /* Texto blanco */
+    margin: 0 10px;
+    font-size: 1.2em;
+}
+
+.social-icons a:hover {
+    color: #ffcc00; /* Amarillo al pasar el mouse */
+}
+
+/* Ajustes para el botón "Cerrar sesión" */
+.cerrar-sesion {
+    background-color: #ffcc00; /* Amarillo */
+    border: none;
+    color: #333; /* Texto oscuro */
+    padding: 10px 20px;
+    cursor: pointer;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+
+.cerrar-sesion:hover {
+    background-color: #e6b800; /* Amarillo más oscuro */
+}
+.logo-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+   </style>
+</head>
+<body>
+    <aside class="sidebar" id="sidebar">
+        <button class="close-btn" onclick="toggleSidebar()">✖</button>
+        <ul class="sidebar-menu">
+            <li class="index"><a href="./index.html"><img src="imgs/spatula.png" width="40px" height="40px"  class="menu-icon"> Productos</a></li>
+            <li><a href="./carrito.html"><img src="imgs/food-stall.png" width="40px" height="40px" class="menu-icon"> Carrito</a></li>
+            <li><a href="./pago.html"><img src="imgs/credit.png" width="40px" height="40px"  class="menu-icon"> Pago</a></li>
+        </ul>
+    </aside>
+
+    <!-- Botón para abrir el menú -->
+    <button class="open-btn" onclick="toggleSidebar()">
+        <img src="imgs/hamburger.png" width="30px" height="30px" alt="Menú" class="hamburger-icon">
+    </button>
+
+    <header>
+        <div>
+            <button class="cerrar-sesion" onclick="cerrarSesion()">Cerrar sesión</button>
+        </div>
+        <div class="logo-container">
+            <img src="imgs/logo.png" width="50px" height="50px" alt="PizzaGo Logo" class="logo">
+            <h1 class="logo-text">PizzaGo</h1>
+        </div>
+        <div id="login-container" class="login-container">
+            <a href="login.html"><div class="login-button">Iniciar sesión</div></a>
+        </div>
+        <!-- Carrito de compras -->
+        <div>
+            <a href="carrito.html" class="carrito-link">
+                <i class="fas fa-shopping-cart"></i> Ver Carrito
+            </a>
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- Image Section -->
+        <div class="image-section">
+            <img src="https://cdn.britannica.com/08/177308-050-94D9D6BE/Food-Pizza-Basil-Tomato.jpg" alt="Pizza Pepperoni" id="productImage" class="main-image">
+        </div>
+
+        <!-- Details Section -->
+        <div class="details-section">
+            <h1 id="productTitle"></h1>
+            <p class="price">
+                <span class="current-price" id="productPrice"></span>
+            </p>
+            <p id="productDescription">Deliciosa Pizza Pepperoni con ingredientes frescos y sabrosos.</p>
+            <div class="pizza-form">
+                <h2>Personaliza tu Pizza</h2>
+                <form id="pizzaForm">
+                    <label for="masa">Tipo de Masa:</label>
+                    <select id="masa" name="masa">
+                        <option value="normal">Normal</option>
+                        <option value="integral">Integral</option>
+                    </select>
+
+                    <label for="tamaño">Tamaño:</label>
+                    <select id="tamaño" name="tamaño">
+                        <option value="pequeña">Pequeña</option>
+                        <option value="mediana">Mediana</option>
+                        <option value="grande">Grande</option>
+                    </select>
+
+                    <label>Ingredientes Extra:</label>
+                    <label><input type="checkbox" name="ingredientes_extra" value="queso"> Queso (+$1)</label>
+                    <label><input type="checkbox" name="ingredientes_extra" value="champiñones"> Champiñones (+$1)</label>
+                    <label><input type="checkbox" name="ingredientes_extra" value="pepperoni"> Pepperoni (+$1)</label>
+
+                    <p><strong>Total: <span id="totalPrice">$2.50</span></strong></p>
+                    <button type="button" onclick="enviarAlBackend()">Ordenar Pizza</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script>
+        function cerrarSesion() {
+            localStorage.removeItem('usuario');
+            location.reload();
+        }
+
+        window.onload = function () {
+            const cliente = JSON.parse(localStorage.getItem('usuario'));
+            if (cliente) {
+                document.getElementById('login-container').innerHTML =
+                    `<span>Hola, ${cliente.nombre}</span>`;
+            }
+        };
+
+        function toggleSidebar() {
+            const sidebar = document.querySelector('.sidebar');
+            const mainContent = document.querySelector('.main-content');
+            sidebar.classList.toggle('active');
+            mainContent.classList.toggle('active');
+        }
+
+        const pizza = JSON.parse(localStorage.getItem('producto'));
+        console.log(pizza);
+
+        // Mostrar los datos de la pizza en la página
+        document.getElementById("productImage").src = pizza.imagen_url.toString();
+        document.getElementById("productTitle").textContent = pizza.nombre;
+        document.getElementById("productDescription").textContent = pizza.descripcion;
+
+        // Función para calcular el total en tiempo real
+        function modificarTotal() {
+            // Obtener valores seleccionados
+            const masa = document.getElementById("masa").value;
+            const tamaño = document.getElementById("tamaño").value;
+            const ingredientesExtra = document.querySelectorAll('input[name="ingredientes_extra"]:checked');
+
+            // Calcular el precio base
+            let total = parseFloat(pizza.precio);
+
+            // Ajustar precio según la masa
+            if (masa === "integral") {
+                total += 2;
+            }
+
+            // Ajustar precio según el tamaño
+            if (tamaño === "pequeña") {
+                total /= 2;
+            } else if (tamaño === "grande") {
+                total *= 2;
+            }
+
+            // Añadir $1 por cada ingrediente extra
+            ingredientesExtra.forEach(() => {
+                total += 1;
+            });
+
+            // Mostrar total actualizado
+            document.getElementById("totalPrice").textContent = `$${total.toFixed(2)}`;
+        }
+
+        // Agregar eventos para actualizar el total dinámicamente
+        document.getElementById("masa").addEventListener("change", modificarTotal);
+        document.getElementById("tamaño").addEventListener("change", modificarTotal);
+        document.querySelectorAll('input[name="ingredientes_extra"]').forEach(input => {
+            input.addEventListener("change", modificarTotal);
+        });
+
+        // Inicializar el total
+        modificarTotal();
+
+        // Función para enviar los datos al backend
+        async function enviarAlBackend() {
+            const cliente = JSON.parse(localStorage.getItem('usuario'));
+            const producto = JSON.parse(localStorage.getItem('producto'));
+
+            if (!cliente) {
+                alert("Debes estar logueado para agregar productos al carrito");
+                return;
+            }
+
+            const clienteId = cliente._id;
+            const productoId = producto._id;
+
+            // Obtener los valores seleccionados
+            const masa = document.getElementById("masa").value;
+            const tamaño = document.getElementById("tamaño").value;
+            const ingredientesExtra = document.querySelectorAll('input[name="ingredientes_extra"]:checked');
+            const total = parseFloat(document.getElementById("totalPrice").textContent.replace('$', ''));
+
+            const opciones = {
+                masa: masa,
+                tamaño: tamaño,
+                ingredientes_extra: Array.from(ingredientesExtra).map(ing => ing.value),
+                total: total
+            };
+
+            try {
+                const response = await fetch('http://localhost:5000/agregar-al-carrito', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        usuario_id: clienteId,
+                        producto_id: productoId,
+                        cantidad: 1,
+                        opciones: opciones
+                    }),
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    alert("Producto agregado al carrito");
+                } else {
+                    alert(data.message || "Ocurrió un error al agregar el producto al carrito");
+                }
+            } catch (error) {
+                console.error("Error en la petición:", error);
+                alert("No se pudo conectar con el servidor");
+            }
+        }
+    </script>
+     <script>
+        document.title = "PizzaGo 🍕";
+    </script>
+</body>
+</html>
