@@ -22,8 +22,6 @@ def home():
 def pagina(nombre_pagina):
     return render_template(f'{nombre_pagina}.html')
 
-if __name__ == '__main__':
-    app.run(debug=True)
 # Conexión a MongoDB
 mongo_uri = "mongodb+srv://pobando:patricio7@cluster0.f3tc9.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
 try:
