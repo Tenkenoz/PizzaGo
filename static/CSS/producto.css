@@ -1,0 +1,259 @@
+/* Estilos generales */
+/* Estilos generales */
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: rgb(255, 193, 106);
+    color: #333; /* Texto oscuro */
+}
+
+/* Menú lateral */
+.sidebar {
+    width: 250px;
+    height: 100%;
+    background-color: #c82333; /* Rojo oscuro */
+    position: fixed;
+    top: 0;
+    left: -250px;
+    transition: left 0.3s ease;
+    z-index: 1000;
+}
+.index{
+    margin-top: 50px;
+}
+
+.sidebar.active {
+    left: 0;
+}
+
+.sidebar-menu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar-menu li {
+    padding: 15px;
+    border-bottom: 1px solid #a71d2a; /* Rojo más oscuro */
+}
+
+.sidebar-menu li a {
+    color: #fff; /* Texto blanco */
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+}
+
+.sidebar-menu li a i {
+    margin-right: 10px;
+}
+
+.sidebar-menu li a:hover {
+    color: #ffcc00; /* Amarillo al pasar el mouse */
+}
+
+/* Botón para abrir el menú */
+.open-btn {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    background-color: #c82333; /* Rojo oscuro */
+    border: none;
+    color: #fff; /* Texto blanco */
+    padding: 10px;
+    cursor: pointer;
+    z-index: 1001;
+}
+
+.open-btn:hover {
+    background-color: #a71d2a; /* Rojo más oscuro */
+}
+
+/* Header */
+header {
+    background: linear-gradient(90deg, #E65100, #FF6F00);
+     /* Rojo oscuro */
+    color: #fff; /* Texto blanco */
+    padding: 20px;
+    text-align: center;
+    position: relative;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 2em;
+}
+
+header h1 i {
+    margin-right: 10px;
+}
+
+.cerrar-sesion {
+    background-color: #ffcc00; /* Amarillo */
+    border: none;
+    color: #333; /* Texto oscuro */
+    padding: 10px 20px;
+    cursor: pointer;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+
+.cerrar-sesion:hover {
+    background-color: #e6b800; /* Amarillo más oscuro */
+}
+
+.login-container {
+    position: absolute;
+    top: 27px;
+    right: 200px;
+}
+a{
+    text-decoration: none;
+}
+
+.login-button {
+    background-color: #ffcc00; /* Amarillo */
+    border: none;
+    color: #333; /* Texto oscuro */
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+.login-button:hover {
+    background-color: #e6b800; /* Amarillo más oscuro */
+}
+
+.carrito-link {
+    color: #fff; /* Texto blanco */
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.carrito-link i {
+    margin-right: 10px;
+}
+
+.carrito-link:hover {
+    color: #ffcc00; /* Amarillo al pasar el mouse */
+}
+
+/* Contenedor de productos */
+#contenedor-productos {
+    transition: margin-left 0.3s ease;
+    text-align: center;
+}
+
+#contenedor-productos.active {
+    margin-left: 0;
+}
+
+.tipo {
+    margin-bottom: 30px;
+}
+
+.tipo h2 {
+    color: #c82333; /* Rojo oscuro */
+    font-size: 1.5em;
+    margin-bottom: 15px;
+}
+
+.productos {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.producto {
+    background: rgb(252, 221, 178); /* Fondo blanco */
+    border: 1px solid #ddd; /* Borde neutro */
+    border-radius: 10px;
+    width: calc(33.333% - 40px);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+    width: 25em;
+    height: 24em;
+    text-align: center;
+    margin: 2em;
+
+}
+
+.producto:hover {
+    transform: translateY(-5px);
+}
+
+.producto img {
+    width: 100%;
+    height: 65%;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+.producto h3 {
+    color: #c82333; /* Rojo oscuro */
+    font-size: 1.2em;
+    margin: 10px 0;
+}
+
+.producto p {
+    color: #666; /* Texto gris */
+    margin: 5px 0;
+}
+
+.producto button {
+    background-color: #ffcc00; /* Amarillo */
+    border: none;
+    color: #333; /* Texto oscuro */
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+
+.producto button:hover {
+    background-color: #e6b800; /* Amarillo más oscuro */
+}
+
+
+
+/* Footer */
+footer {
+    background-color: #333; /* Fondo oscuro */
+    color: #fff; /* Texto blanco */
+    padding: 20px;
+    text-align: center;
+    margin-top: 30px;
+}
+
+footer a {
+    color: #ffcc00; /* Amarillo */
+    text-decoration: none;
+    margin: 0 10px;
+}
+
+footer a:hover {
+    color: #e6b800; /* Amarillo más oscuro */
+}
+
+.social-icons {
+    margin-top: 10px;
+}
+
+.social-icons a {
+    color: #fff; /* Texto blanco */
+    margin: 0 10px;
+    font-size: 1.2em;
+}
+
+.social-icons a:hover {
+    color: #ffcc00; /* Amarillo al pasar el mouse */
+}
+.logo-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

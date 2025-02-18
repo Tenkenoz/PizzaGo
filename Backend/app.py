@@ -1,5 +1,6 @@
 from datetime import datetime
 from email import parser
+import os
 from flask import Flask, jsonify, render_template, request
 from flask_cors import CORS
 from pymongo import MongoClient
@@ -7,8 +8,14 @@ import pandas as pd
 from bson import ObjectId
 from dateutil import parser
 
-app = Flask(__name__)
+app = Flask(__name__, 
+            template_folder=os.path.abspath("../"),  # Busca templates en la raíz
+            static_folder=os.path.abspath("../static"))  # Busca static en la raíz/static
+
 CORS(app)
+@app.route("/")
+def home():
+    return render_template("pizzaGo.html") 
 # Conexión a MongoDB
 mongo_uri = "mongodb+srv://pobando:patricio7@cluster0.f3tc9.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
 try:
