@@ -10,7 +10,9 @@ from dateutil import parser
 
 from flask import Flask, render_template
 
-app = Flask(__name__)
+app = Flask(__name__, 
+            template_folder=os.path.abspath("../templates"),  # Busca templates en la raíz/templates
+            static_folder=os.path.abspath("../static"))       # Busca static en la raíz/static
 
 # Ruta para la página principal
 @app.route('/')
