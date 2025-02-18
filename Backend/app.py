@@ -8,14 +8,22 @@ import pandas as pd
 from bson import ObjectId
 from dateutil import parser
 
-app = Flask(__name__, 
-            template_folder=os.path.abspath("../"),  # Busca templates en la raíz
-            static_folder=os.path.abspath("../static"))  # Busca static en la raíz/static
+from flask import Flask, render_template
 
-CORS(app)
-@app.route("/")
+app = Flask(__name__)
+
+# Ruta para la página principal
+@app.route('/')
 def home():
-    return render_template("pizzaGo.html") 
+    return render_template('pizzaGo.html')
+
+# Ruta dinámica para manejar múltiples archivos HTML
+@app.route('/<nombre_pagina>')
+def pagina(nombre_pagina):
+    return render_template(f'{nombre_pagina}.html')
+
+if __name__ == '__main__':
+    app.run(debug=True)
 # Conexión a MongoDB
 mongo_uri = "mongodb+srv://pobando:patricio7@cluster0.f3tc9.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
 try:
