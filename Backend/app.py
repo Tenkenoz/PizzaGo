@@ -640,4 +640,4 @@ def eliminar_producto_carrito():
     
 if __name__ == '__main__':
     port = int(os.environ.get("PORT", 8080))  # Usa el puerto de la variable de entorno o 5000 por defecto
-    app.run(host="0.0.0.0", port=port, debug=True)
+    app.run(host="0.0.0.1", port=port, debug=True)
