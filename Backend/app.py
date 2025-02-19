@@ -13,7 +13,7 @@ from flask import Flask, render_template
 app = Flask(__name__, 
             template_folder=os.path.abspath("../templates"),  # Busca templates en la raíz/templates
             static_folder=os.path.abspath("../static"))       # Busca static en la raíz/static
-
+CORS(app)
 # Ruta para la página principal
 @app.route('/')
 def home():
@@ -23,7 +23,6 @@ def home():
 @app.route('/<nombre_pagina>')
 def pagina(nombre_pagina):
     return render_template(f'{nombre_pagina}.html')
-CORS(app)
 # Conexión a MongoDB
 mongo_uri = "mongodb+srv://pobando:patricio7@cluster0.f3tc9.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
 try:
