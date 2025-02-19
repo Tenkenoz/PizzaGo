@@ -639,5 +639,5 @@ def eliminar_producto_carrito():
         return jsonify({'message': f'Error al eliminar el producto del carrito: {str(e)}'}), 500
     
 if __name__ == '__main__':
-    port = int(os.environ.get("PORT", 5000))  # Usa el puerto proporcionado por Render
+    port = int(os.environ.get("PORT", 10000))  # Usa el puerto proporcionado por Render
     app.run(host="0.0.0.0", port=port, debug=True)
